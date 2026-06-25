@@ -48,9 +48,9 @@
         loader.style.display = 'none';
         initHeroAnim();
         initScrollAnims();
-        initScrollScrub();
         initHero3D();
         initVerticals3D();
+        initScrollScrub();
       }
     });
   }
@@ -419,11 +419,13 @@
     if (!window.THREE || !heroCanvas) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 100);
+    const w = heroCanvas.clientWidth || heroCanvas.parentElement.clientWidth || window.innerWidth;
+    const h = heroCanvas.clientHeight || heroCanvas.parentElement.clientHeight || window.innerHeight;
+    const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 100);
     camera.position.z = 15;
 
     const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
-    renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+    renderer.setSize(w, h, false);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const count = 160;
@@ -501,9 +503,11 @@
     animate();
 
     window.addEventListener('resize', () => {
-      camera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
+      const w = heroCanvas.clientWidth || heroCanvas.parentElement.clientWidth || window.innerWidth;
+      const h = heroCanvas.clientHeight || heroCanvas.parentElement.clientHeight || window.innerHeight;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
+      renderer.setSize(w, h, false);
     });
   }
 
@@ -523,23 +527,29 @@
     dirLight2.position.set(-5, -5, 5);
     verticalsScene.add(dirLight2);
 
-    verticalsCamera = new THREE.PerspectiveCamera(50, threeCanvas.clientWidth / threeCanvas.clientHeight, 0.1, 100);
-    verticalsCamera.position.set(0, 0, 10);
+    const w = threeCanvas.clientWidth || threeCanvas.parentElement.clientWidth || window.innerWidth;
+    const h = threeCanvas.clientHeight || threeCanvas.parentElement.clientHeight || window.innerHeight;
+    const aspect = w / h;
 
-    const shiftX = window.innerWidth > 768 ? 2.2 : 0;
+    verticalsCamera = new THREE.PerspectiveCamera(50, aspect, 0.1, 100);
+    // Push camera back on portrait viewports to prevent 3D items from being clipped
+    const camZ = aspect < 1 ? 13 : 10;
+    verticalsCamera.position.set(0, 0, camZ);
+
+    const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
+    const shiftX = isMobile ? 0 : 2.2;
     const shiftGroup = new THREE.Group();
     shiftGroup.position.x = shiftX;
     verticalsScene.add(shiftGroup);
 
     verticalsRenderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: true });
-    verticalsRenderer.setSize(threeCanvas.clientWidth, threeCanvas.clientHeight);
+    verticalsRenderer.setSize(w, h, false);
     verticalsRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     activeLotus = createLotus();
     activeBrain = createBrainNetwork();
     activeSanskrit = createSanskritParticles();
 
-    const isMobile = window.innerWidth <= 768;
     activeLotus.scale.setScalar(isMobile ? 0.75 : 1.2);
     activeBrain.scale.setScalar(isMobile ? 0.65 : 1.0);
     activeSanskrit.scale.setScalar(isMobile ? 0.65 : 1.0);
@@ -595,11 +605,16 @@
     animate();
 
     window.addEventListener('resize', () => {
-      verticalsCamera.aspect = threeCanvas.clientWidth / threeCanvas.clientHeight;
+      const w = threeCanvas.clientWidth || threeCanvas.parentElement.clientWidth || window.innerWidth;
+      const h = threeCanvas.clientHeight || threeCanvas.parentElement.clientHeight || window.innerHeight;
+      const aspect = w / h;
+
+      verticalsCamera.aspect = aspect;
+      verticalsCamera.position.z = aspect < 1 ? 13 : 10;
       verticalsCamera.updateProjectionMatrix();
-      verticalsRenderer.setSize(threeCanvas.clientWidth, threeCanvas.clientHeight);
+      verticalsRenderer.setSize(w, h, false);
       
-      const isMobile = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
       shiftGroup.position.x = isMobile ? 0 : 2.2;
 
       // Update scales on resize
@@ -616,7 +631,7 @@
     let brainScale = 0;
     let sanskritScale = 0;
 
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
     const lotusMax = isMobile ? 0.75 : 1.2;
     const brainMax = isMobile ? 0.65 : 1.0;
     const sanskritMax = isMobile ? 0.65 : 1.0;
