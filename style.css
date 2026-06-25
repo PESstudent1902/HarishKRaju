@@ -274,15 +274,6 @@ a { text-decoration: none; color: inherit; }
   background: #000;
 }
 
-#main-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  /* Needed for Chrome file:// — will show first frame once metadata loads */
-}
 
 .vbg {
   position: absolute;
@@ -297,7 +288,7 @@ a { text-decoration: none; color: inherit; }
   pointer-events: none;
 }
 .vbg.show {
-  opacity: 0.55; /* Blends with the video behind it */
+  opacity: 0.75; /* Vibrant background that works beautifully without the video */
 }
 
 #three-canvas {
@@ -421,23 +412,7 @@ a { text-decoration: none; color: inherit; }
   transform: scale(1.5);
 }
 
-/* Fallback message (hidden by default, shown by JS if video fails) */
-#video-fallback {
-  display: none;
-  position: absolute; inset: 0; z-index: 20;
-  background: rgba(8,9,14,.9);
-  align-items: center; justify-content: center;
-  text-align: center; padding: 40px;
-  backdrop-filter: blur(8px);
-}
-#video-fallback p {
-  max-width: 420px; font-size: 1rem; line-height: 1.8; color: var(--text);
-  padding: 32px 36px;
-  background: var(--glass);
-  border: 1px solid var(--glass-b);
-  border-radius: var(--r);
-}
-#video-fallback strong { color: var(--gold); }
+
 
 /* ─── Qualifications / Timeline ──────────────────────────── */
 #qualifications {

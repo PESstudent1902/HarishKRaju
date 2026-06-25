@@ -10,13 +10,11 @@
   /* ── DOM refs ─────────────────────────────────────────── */
   const loader     = document.getElementById('loader');
   const navbar     = document.getElementById('navbar');
-  const video      = document.getElementById('main-video');
   const vcards     = document.querySelectorAll('.vcard');
   const vdots      = document.querySelectorAll('.vdot');
   const pfill      = document.getElementById('vprogress-fill');
   const vtopStep   = document.getElementById('vtop-step');
   const vtopName   = document.getElementById('vtop-name');
-  const fallback   = document.getElementById('video-fallback');
   const heroCanvas = document.getElementById('hero-canvas');
   const threeCanvas = document.getElementById('three-canvas');
   const vbgs       = document.querySelectorAll('.vbg');
@@ -45,6 +43,7 @@
         loader.style.display = 'none';
         initHeroAnim();
         initScrollAnims();
+        initScrollScrub();
         initHero3D();
         initVerticals3D();
       }
@@ -117,7 +116,7 @@
     if (vtopName) vtopName.textContent = VERTICAL_NAMES[index];
   }
 
-  function initVideoScrub(duration) {
+  function initScrollScrub() {
     // Show first card immediately
     showCard(0);
     update3DVerticals(0);
@@ -131,43 +130,12 @@
       scrub: 1.5,           // smoothing factor (seconds)
       onUpdate: (self) => {
         const p = self.progress;                          // 0 → 1
-        video.currentTime = p * duration;                 // scrub
         pfill.style.width = (p * 100) + '%';             // progress bar
         showCard(Math.min(2, Math.floor(p * 3)));         // which card
         update3DVerticals(p);
       }
     });
   }
-
-  let scrubInited = false;
-
-  function tryInitVideo() {
-    if (scrubInited) return true;
-    const dur = video.duration;
-    if (!dur || isNaN(dur) || dur === Infinity) return false;
-    scrubInited = true;
-    initVideoScrub(dur);
-    return true;
-  }
-
-  // Always show card 0 immediately so content is visible while video loads
-  showCard(0);
-
-  // Multiple hooks to catch when video duration is known
-  video.addEventListener('loadedmetadata', tryInitVideo);
-  video.addEventListener('canplay',        tryInitVideo);
-  video.addEventListener('loadeddata',     tryInitVideo);
-
-  // If already loaded (e.g. cached)
-  if (video.readyState >= 1) tryInitVideo();
-
-  // Only show fallback on actual network/decode error
-  video.addEventListener('error', () => {
-    fallback.style.display = 'flex';
-  });
-
-  // Force-load the video (ensures browser starts fetching)
-  video.load();
 
   /* ── Dot navigation ───────────────────────────────────── */
   vdots.forEach((dot, i) => {
