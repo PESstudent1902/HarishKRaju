@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harish K Raju | Teacher · Counselor · Mentor</title>
+  <meta name="description" content="Sri Harish K Raju – Sound Healing Therapist, MIDNA Career Counsellor & Genetic Brain Profile Consultant, and Chinmaya Balavihar Sevak based in Bangalore, India." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====================== LOADER ====================== -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <span class="loader-om">ॐ</span>
+    </div>
+    <p class="loader-text">Preparing Experience…</p>
+  </div>
+
+  <!-- ====================== NAVBAR ====================== -->
+  <nav id="navbar">
+    <div class="nav-logo">HKR</div>
+    <ul class="nav-links">
+      <li><a href="#hero"           class="nav-link">Home</a></li>
+      <li><a href="#about"          class="nav-link">About</a></li>
+      <li><a href="#verticals"      class="nav-link">Verticals</a></li>
+      <li><a href="#qualifications" class="nav-link">Journey</a></li>
+      <li><a href="#contact"        class="nav-link">Connect</a></li>
+    </ul>
+    <div class="nav-hamburger" id="nav-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ====================== HERO ====================== -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-bg">
+      <div class="orb orb-violet"></div>
+      <div class="orb orb-gold"></div>
+      <div class="orb orb-cyan"></div>
+    </div>
+
+    <div class="hero-content" id="hero-content">
+      <div class="hero-eyebrow" id="hero-eyebrow">Sri Harish K Raju</div>
+      <h1 class="hero-title">
+        <span class="hl" id="hl1">Healer.</span>
+        <span class="hl" id="hl2">Mentor.</span>
+        <span class="hl" id="hl3">Sevak.</span>
+      </h1>
+      <p class="hero-sub" id="hero-sub">Sound Healing · Career Counselling · Balavihar Education</p>
+      <p class="hero-loc" id="hero-loc">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Mahalakshmi Layout, Bangalore, India
+      </p>
+      <div class="hero-btns" id="hero-btns">
+        <a href="#about"   class="btn-primary" id="btn-journey">Discover My Journey</a>
+        <a href="#contact" class="btn-ghost"   id="btn-contact">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- ====================== ABOUT ====================== -->
+  <section id="about">
+    <div class="section-fade-top"></div>
+    <div class="container">
+      <p class="eyebrow">The Journey</p>
+      <h2 class="sec-title">22+ Years of<br/><em>Passion &amp; Purpose</em></h2>
+      <div class="about-grid">
+        <div class="about-card anim-card">
+          <div class="card-icon">🎓</div>
+          <h3>Engineer by Training</h3>
+          <p>B.E. Mechanical Engineering (1994–98), MSRIT Bangalore. Corporate career spanning Bosch, TVS, Triveni, TD Power Systems — including 2 years at Robert Bosch GmbH, Stuttgart, Germany.</p>
+        </div>
+        <div class="about-card anim-card">
+          <div class="card-icon">🌍</div>
+          <h3>Polyglot &amp; Scholar</h3>
+          <p>Fluent in English, Kannada, Telugu, Tamil &amp; Hindi. A1 German. Certified in Samskrita Shiksha. B.Ed. (Math &amp; Physics) with 8.5 CGPA — Aristotle College, Kolar, 2023.</p>
+        </div>
+        <div class="about-card anim-card">
+          <div class="card-icon">🕊️</div>
+          <h3>Spiritual Volunteer</h3>
+          <p>Chinmaya Yuva Kendra Volunteer since 1993. Art of Living associate since 2001. Completed 8+ Advanced Meditation courses. NLP Practitioner under Dr Doris Greenwood, Germany.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== VIDEO VERTICALS ====================== -->
+  <!--
+    Structure explanation:
+      #verticals is a TALL container (400vh).
+      #video-pin is position:sticky so it stays in view.
+      The height of #verticals minus 100vh = the scroll distance for scrubbing.
+      GSAP ScrollTrigger maps that scroll → video.currentTime + overlay transitions.
+  -->
+  <section id="verticals">
+    <div id="video-pin">
+
+      <video
+        id="main-video"
+        src="portfolio_video.mp4"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+
+      <!-- Background images for smooth crossfade -->
+      <div class="vbg" id="vbg-0" style="background-image: url('sound_healing_bg.png');"></div>
+      <div class="vbg" id="vbg-1" style="background-image: url('midna_counselling_bg.png');"></div>
+      <div class="vbg" id="vbg-2" style="background-image: url('sanskrit_balavihar_bg.png');"></div>
+
+      <!-- Interactive 3D WebGL Canvas -->
+      <canvas id="three-canvas"></canvas>
+
+      <!-- Dark gradient overlay so text reads clearly -->
+      <div class="vgrad"></div>
+
+      <!-- Top label -->
+      <div class="vtop-label">
+        <span class="vtop-step" id="vtop-step">01 / 03</span>
+        <span class="vtop-name" id="vtop-name">Sound Healing</span>
+      </div>
+
+      <!-- Overlay cards — one per vertical -->
+      <div class="vcard" id="vcard-0">
+        <div class="vcard-inner">
+          <div class="vnum">01</div>
+          <div class="vtag">Vertical I</div>
+          <h2 class="vtitle">Sound Healing</h2>
+          <p class="vdesc">
+            Harish is a certified 2nd-Level Reiki practitioner and Sound Healing Therapist, also trained in Past Life Regression Therapy. Using vibrational resonance and ancient healing modalities, he helps individuals restore balance — mentally, physically, and spiritually.
+          </p>
+          <ul class="vpills">
+            <li>Sound Healing Therapy</li>
+            <li>2nd Level Reiki</li>
+            <li>Past Life Regression</li>
+            <li>Advanced Meditation (8+ courses)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vcard" id="vcard-1">
+        <div class="vcard-inner">
+          <div class="vnum">02</div>
+          <div class="vtag">Vertical II</div>
+          <h2 class="vtitle">MIDNA Career Counsellor<br/>&amp; Professional Mentor</h2>
+          <p class="vdesc">
+            As a certified Genetic Brain Profile Consultant (Neuro Psychologist) under MIDNA Bangalore, Harish uses Dermatoglyphics — a fingerprint-based neuroscience — to mentor children, adolescents, and adults toward their innate strengths and true potential.
+          </p>
+          <ul class="vpills">
+            <li>MIDNA Certified Neuro Psychologist</li>
+            <li>Dermatoglyphics Analysis</li>
+            <li>NLP Practitioner</li>
+            <li>Public Speaking Coach</li>
+            <li>Layman's Counselling Certified</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vcard" id="vcard-2">
+        <div class="vcard-inner">
+          <div class="vnum">03</div>
+          <div class="vtag">Vertical III</div>
+          <h2 class="vtitle">Chinmaya Balavihar<br/>Sevak &amp; Sanskrit Teacher</h2>
+          <p class="vdesc">
+            Since 2001, Harish has been a dedicated Balavihar Sevak, nurturing children aged 5–16 in chanting the Bhagavad Gita, Vishnu Sahasranama, Hanuman Chalisa, Shlokas, Stotrams and value-based lessons rooted in India's sacred scriptures.
+          </p>
+          <ul class="vpills">
+            <li>Chinmaya Mission — Since 1993</li>
+            <li>Sanskrit · Samaskrita Bharathi</li>
+            <li>Balavihar (Ages 5–16)</li>
+            <li>Online &amp; Offline Classes</li>
+            <li>22+ Years of Seva</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div id="vprogress">
+        <div id="vprogress-fill"></div>
+      </div>
+
+      <!-- Side dots -->
+      <div id="vdots">
+        <button class="vdot active" data-i="0" title="Sound Healing"></button>
+        <button class="vdot"        data-i="1" title="MIDNA Counselling"></button>
+        <button class="vdot"        data-i="2" title="Balavihar Sevak"></button>
+      </div>
+
+      <!-- Video not loaded fallback -->
+      <div id="video-fallback">
+        <p>⚠️ Video requires an HTTP server. Please open via <strong>start_server.bat</strong> or use VS Code Live Server.</p>
+      </div>
+
+    </div>
+    <!-- The section's height creates the scroll room. CSS sets this to 400vh -->
+  </section>
+
+  <section id="qualifications">
+    <div class="section-fade-top"></div>
+    <div class="container">
+      <div class="qual-grid">
+        <div class="qual-timeline-col">
+          <p class="eyebrow">Credentials</p>
+          <h2 class="sec-title">Certifications &amp;<br/><em>Achievements</em></h2>
+          <div class="timeline">
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">1993</span><h4>Chinmaya Mission – Volunteer</h4><p>Met Pujya Gurudev Swami Chinmayananda ji. Lifelong association begins.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">1998</span><h4>B.E. Mechanical Engineering</h4><p>MSRIT Bangalore. Corporate career at Bosch, TVS, Triveni &amp; international role in Stuttgart, Germany.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">2001</span><h4>Balavihar Sevak &amp; Art of Living</h4><p>Began weekend Balavihar classes. Art of Living volunteer with 8+ Advance courses.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">2020</span><h4>Online Balavihar Classes</h4><p>Transitioned seamlessly to online format during COVID. Offline classes resumed since.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">2023</span><h4>B.Ed. · 8.5 CGPA</h4><p>Aristotle College, Kolar – Bangalore North University. Math &amp; Physics.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">2023</span><h4>NLP Practitioner &amp; Counselling</h4><p>Dr Doris Greenwood, Germany. Prasanna Counselling Centre, Bangalore.</p></div></div>
+            <div class="tl-item anim-tl"><div class="tl-dot"></div><div class="tl-body"><span class="tl-yr">Now</span><h4>MIDNA Genetic Brain Profile Consultant</h4><p>Certified Neuro Psychologist. Dermatoglyphics-based mentoring for all age groups.</p></div></div>
+          </div>
+        </div>
+        <div class="qual-photo-col">
+          <div class="photo-frame anim-photo">
+            <div class="photo-glow-back"></div>
+            <div class="photo-inner">
+              <img src="harish.png" alt="Sri Harish K Raju" class="profile-img" />
+            </div>
+            <div class="photo-badge">
+              <span class="badge-title">Sri Harish K Raju</span>
+              <span class="badge-sub">Resolute Sevak &amp; Mentor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CONTACT ====================== -->
+  <section id="contact">
+    <div class="section-fade-top"></div>
+    <div class="contact-orb-1 orb"></div>
+    <div class="contact-orb-2 orb"></div>
+    <div class="container">
+      <p class="eyebrow">Let's Connect</p>
+      <h2 class="sec-title">Ready to Begin<br/><em>Your Journey?</em></h2>
+      <p class="contact-intro">Whether you're seeking healing, career clarity, or education rooted in timeless values — Harish is here to guide you.</p>
+
+      <div class="contact-cards">
+        <a href="mailto:harish19762707@gmail.com" class="ccard anim-ccard" id="ccard-email">
+          <div class="ccard-icon">✉️</div>
+          <div>
+            <div class="ccard-label">Email</div>
+            <div class="ccard-val">harish19762707@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+919845885305" class="ccard anim-ccard" id="ccard-phone">
+          <div class="ccard-icon">📞</div>
+          <div>
+            <div class="ccard-label">Phone</div>
+            <div class="ccard-val">+91 98458 85305</div>
+          </div>
+        </a>
+        <div class="ccard anim-ccard" id="ccard-loc">
+          <div class="ccard-icon">📍</div>
+          <div>
+            <div class="ccard-label">Location</div>
+            <div class="ccard-val">Mahalakshmi Layout, Bangalore</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-row">
+        <div class="spill">🎵 Sound Healing</div>
+        <div class="spill">🧠 MIDNA Brain Profiling</div>
+        <div class="spill">📚 Balavihar Classes</div>
+        <div class="spill">🌿 Reiki Therapy</div>
+        <div class="spill">🎓 Career Mentoring</div>
+        <div class="spill">🕉️ Sanskrit Teaching</div>
+        <div class="spill">🔮 Past Life Regression</div>
+        <div class="spill">🗣️ Public Speaking</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">HKR</div>
+      <p class="footer-tag">Harish K Raju · Teacher · Counselor · Mentor · Sevak</p>
+      <p class="footer-copy">© 2024 Sri Harish K Raju. All rights reserved. Bangalore, India.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
