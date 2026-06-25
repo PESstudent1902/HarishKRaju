@@ -7,7 +7,7 @@ A premium, dark-themed, 3D interactive portfolio website integrating the three p
 
 ## Tech Stack & Architecture
 * **Frontend:** Semantic HTML5, Vanilla CSS3, and JavaScript (ES6+).
-* **Animations:** GSAP (GreenSock Animation Platform) + ScrollTrigger for high-performance scroll-scrubbed video timeline control.
+* **Animations:** GSAP (GreenSock Animation Platform) + ScrollTrigger for high-performance scroll-scrubbed background crossfades and content transitions.
 * **3D Interactive Graphics:** Three.js (WebGL) for real-time procedural animations:
   * Hero section interactive floating particle constellation reacting to mouse movement.
   * Sticky verticals section morphing between a **3D translucent glassmorphic Lotus**, a **3D Neural Brain Network**, and **floating golden Sanskrit characters** as the user scrolls.
