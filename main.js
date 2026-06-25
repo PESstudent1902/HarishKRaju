@@ -7,6 +7,11 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
+  // Prevent dynamic mobile address bars from constantly triggering resize/refresh, which stutters layout
+  ScrollTrigger.config({
+    ignoreMobileResize: true
+  });
+
   /* ── DOM refs ─────────────────────────────────────────── */
   const loader     = document.getElementById('loader');
   const navbar     = document.getElementById('navbar');
@@ -127,6 +132,7 @@
       end: 'bottom bottom',
       pin: '#video-pin',
       pinSpacing: false,
+      anticipatePin: 1,     // reduces pinning transition lag on mobile
       scrub: 1.5,           // smoothing factor (seconds)
       onUpdate: (self) => {
         const p = self.progress;                          // 0 → 1
@@ -659,6 +665,25 @@
     } else {
       activeSanskrit.visible = false;
     }
+  }
+
+  /* ── Mobile menu toggle ───────────────────────────────── */
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when any link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
   }
 
 })();

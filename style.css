@@ -28,7 +28,7 @@
   --ff-body:    'Outfit', sans-serif;
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { overflow-x: hidden; }
 
 body {
   font-family: var(--ff-body);
@@ -105,7 +105,19 @@ a { text-decoration: none; color: inherit; }
 .nav-link:hover::after { transform: scaleX(1); }
 
 .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; }
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
 /* ─── Hero ───────────────────────────────────────────────── */
 #hero {
@@ -263,12 +275,14 @@ a { text-decoration: none; color: inherit; }
 */
 #verticals {
   position: relative;
-  height: 400vh;     /* 100vh visible + 300vh scroll room */
+  height: 400vh;
+  height: 400dvh;    /* Responsive to mobile browser bars */
 }
 
 #video-pin {
   position: relative;
   height: 100vh;
+  height: 100dvh;    /* Responsive to mobile browser bars */
   width: 100%;
   overflow: hidden;
   background: #000;
@@ -636,8 +650,35 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
   #navbar { padding: 16px 22px; }
   #navbar.scrolled { padding: 11px 22px; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(8, 9, 14, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--glass-b);
+    padding: 80px 40px;
+    gap: 32px;
+    z-index: 999;
+    transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .nav-links.active {
+    right: 0;
+  }
+  .nav-links .nav-link {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .nav-hamburger { display: flex; z-index: 1000; }
 
   #hero { padding: 0 22px; }
   .hero-btns { flex-direction: column; align-items: center; }
