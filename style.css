@@ -436,6 +436,42 @@ a { text-decoration: none; color: inherit; }
   border-radius: 8px;
 }
 
+/* ─── Video Testimonials Section ─────────────────────────── */
+.vvideo-section {
+  margin: 24px 0 16px;
+}
+.vvideo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.vvideo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vvideo-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--glass-b);
+  box-shadow: 0 4px 15px rgba(0,0,0,.3);
+  background: #000;
+}
+.vvideo-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+}
+.vvideo-label {
+  font-size: .74rem;
+  color: var(--muted);
+  letter-spacing: .02em;
+  text-align: center;
+  font-weight: 500;
+}
+
 /* Progress bar */
 #vprogress {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -785,6 +821,7 @@ a { text-decoration: none; color: inherit; }
   #vdots { display: none; }
   .vbenefits { padding: 14px; }
   .vgallery { grid-template-columns: 1fr; }
+  .vvideo-grid { grid-template-columns: 1fr; gap: 16px; }
 
   /* Cred badges — single column on small screens */
   .cred-grid { grid-template-columns: 1fr; }
