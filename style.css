@@ -116,7 +116,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ─── Hero ───────────────────────────────────────────────── */
 #hero {
-  position: relative; min-height: 100vh;
+  position: relative; z-index: 10; min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
   background:
@@ -466,7 +466,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ─── ABOUT SECTION ──────────────────────────────────────── */
 #about {
-  position: relative;
+  position: relative; z-index: 10;
   padding: 130px 60px 100px;
   background: var(--bg3);
   overflow: hidden;
@@ -573,7 +573,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ─── Contact Section ────────────────────────────────────── */
 #contact {
-  position: relative; padding: 130px 60px 80px; overflow: hidden;
+  position: relative; z-index: 10; padding: 130px 60px 80px; overflow: hidden;
   background: var(--bg);
 }
 #contact .section-fade-top { background: linear-gradient(to bottom, var(--bg3), transparent); }
@@ -668,6 +668,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ─── Footer ─────────────────────────────────────────────── */
 #footer {
+  position: relative; z-index: 10;
   background: #050609;
   border-top: 1px solid var(--glass-b);
   padding: 50px 60px; text-align: center;
@@ -758,7 +759,7 @@ a { text-decoration: none; color: inherit; }
     position: relative;
     left: auto; top: auto; bottom: auto;
     width: 100%;
-    padding: 0 20px 48px 20px;
+    padding: 0 20px 18px 20px; /* Tightened from 48px */
     opacity: 1 !important;
     transform: none !important;
     display: flex;
@@ -770,7 +771,7 @@ a { text-decoration: none; color: inherit; }
   .vcard-inner {
     max-height: none;
     overflow-y: visible;
-    margin-top: 42vh; /* Push card down to leave top 42% of screen clear for 3D model */
+    margin-top: 25vh; /* Tightened from 42vh to reduce empty space while keeping model visible */
     background: rgba(8,9,14,.93);
     border: 1px solid var(--glass-b);
     box-shadow: 0 8px 40px rgba(0,0,0,.6);
@@ -784,8 +785,8 @@ a { text-decoration: none; color: inherit; }
   /* Cred badges — single column on small screens */
   .cred-grid { grid-template-columns: 1fr; }
 
-  #contact { padding: 90px 22px 70px; }
-  #footer   { padding: 40px 22px; }
+  #contact { padding: 90px 22px 70px; z-index: 10; }
+  #footer   { padding: 40px 22px; z-index: 10; }
 
   .btn-wa { padding: 14px 30px; font-size: .88rem; }
 }
@@ -802,10 +803,10 @@ a { text-decoration: none; color: inherit; }
 /* ─── Landscape mobile — adjust margins for scrolling layout ─── */
 @media (max-width: 768px) and (orientation: landscape) {
   .vcard {
-    padding: 0 20px 32px 20px;
+    padding: 0 20px 20px 20px;
   }
   .vcard-inner {
-    margin-top: 30vh;
+    margin-top: 18vh;
     padding: 24px 22px;
   }
   .vbenefits { display: none; }

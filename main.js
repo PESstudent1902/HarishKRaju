@@ -573,7 +573,7 @@
 
     const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
     const shiftX = isMobile ? 0 : 2.2;
-    const shiftY = isMobile ? 1.8 : 0; // Shift up on mobile to float model above cards in top 40% of viewport
+    const shiftY = isMobile ? 2.2 : 0; // Shift up on mobile to float model above cards in top 30% of viewport
     const shiftGroup = new THREE.Group();
     shiftGroup.position.x = shiftX;
     shiftGroup.position.y = shiftY;
@@ -654,7 +654,7 @@
       
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
       shiftGroup.position.x = isMobile ? 0 : 2.2;
-      shiftGroup.position.y = isMobile ? 1.8 : 0; // Shift up on resize if mobile
+      shiftGroup.position.y = isMobile ? 2.2 : 0; // Shift up on resize if mobile
 
       // Update scales on resize
       if (activeLotus && activeLotus.visible) activeLotus.scale.setScalar(isMobile ? 0.75 : 1.2);
