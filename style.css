@@ -759,7 +759,7 @@ a { text-decoration: none; color: inherit; }
     position: relative;
     left: auto; top: auto; bottom: auto;
     width: 100%;
-    padding: 0 20px 18px 20px; /* Tightened from 48px */
+    padding: 0 20px 14px 20px; /* Tightened padding for cleaner stack */
     opacity: 1 !important;
     transform: none !important;
     display: flex;
@@ -771,10 +771,14 @@ a { text-decoration: none; color: inherit; }
   .vcard-inner {
     max-height: none;
     overflow-y: visible;
-    margin-top: 25vh; /* Tightened from 42vh to reduce empty space while keeping model visible */
+    margin-top: 16px; /* Tight, clean vertical gap between cards */
     background: rgba(8,9,14,.93);
     border: 1px solid var(--glass-b);
     box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  }
+  /* Only push the first card down to leave space for the initial 3D Lotus */
+  .vcard:first-of-type .vcard-inner {
+    margin-top: 35vh;
   }
   .vtop-label { display: none; }
   #vprogress { display: none; }
