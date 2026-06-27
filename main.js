@@ -1,6 +1,7 @@
 /*!
- * HARISH K RAJU PORTFOLIO — main.js
- * GSAP ScrollTrigger + video scrubbing
+ * HARISH K RAJU — main.js
+ * Services-focused personal branding site
+ * GSAP ScrollTrigger + Three.js 3D assets
  */
 (function () {
   'use strict';
@@ -24,7 +25,7 @@
   const threeCanvas = document.getElementById('three-canvas');
   const vbgs       = document.querySelectorAll('.vbg');
 
-  const VERTICAL_NAMES = ['Sound Healing', 'MIDNA Counselling', 'Balavihar Sevak'];
+  const VERTICAL_NAMES = ['Sound Healing', 'MIDNA Career Counselling', 'Balavihar & Sanskrit'];
 
   // Global variables for 3D assets (declared at top to avoid ReferenceErrors during early video metadata load events)
   let activeLotus = null;
@@ -127,7 +128,7 @@
     update3DVerticals(0);
 
     ScrollTrigger.create({
-      trigger: '#verticals',
+      trigger: '#services',
       start: 'top top',
       end: 'bottom bottom',
       pin: '#video-pin',
@@ -146,7 +147,7 @@
   /* ── Dot navigation ───────────────────────────────────── */
   vdots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      const sec    = document.getElementById('verticals');
+      const sec    = document.getElementById('services');
       const top    = sec.getBoundingClientRect().top + window.scrollY;
       const height = sec.offsetHeight;
       // Jump to the start of each third (+2% to not sit on boundary)
@@ -172,15 +173,14 @@
       });
     });
 
-    // -- Timeline items --
-    document.querySelectorAll('.anim-tl').forEach((el, i) => {
+    // -- Photo frame --
+    document.querySelectorAll('.anim-photo').forEach((el) => {
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 89%',
+        start: 'top 88%',
         onEnter: () => {
           gsap.to(el, {
-            opacity: 1, x: 0, duration: 0.75,
-            delay: i * 0.08, ease: 'power3.out'
+            opacity: 1, x: 0, duration: 1.0, ease: 'power3.out'
           });
         }
       });
@@ -327,7 +327,7 @@
     const lineMat = new THREE.LineBasicMaterial({
       color: 0x7c3aed,
       transparent: true,
-      opacity: 0.35
+      opacity: 0.18  // Reduced from 0.35 — subtler neural web
     });
 
     const connectionsGeo = new THREE.BufferGeometry();
@@ -401,10 +401,11 @@
         (Math.random() - 0.5) * 5
       );
 
+      // Slowed from 0.004/0.002/0.002 — calmer, meditative float
       sprite.userData = {
-        vx: (Math.random() - 0.5) * 0.004,
-        vy: (Math.random() - 0.5) * 0.002,
-        vz: (Math.random() - 0.5) * 0.002
+        vx: (Math.random() - 0.5) * 0.0025,
+        vy: (Math.random() - 0.5) * 0.0012,
+        vz: (Math.random() - 0.5) * 0.0012
       };
 
       sanskritGroup.add(sprite);
@@ -428,7 +429,8 @@
     renderer.setSize(w, h, false);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const count = 160;
+    // Reduced from 160 — subtler, less distracting particle field
+    const count = 80;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -489,8 +491,9 @@
 
     function animate() {
       requestAnimationFrame(animate);
-      points.rotation.y += 0.0008;
-      points.rotation.x += 0.0004;
+      // Slowed from 0.0008 / 0.0004 — gentler ambient movement
+      points.rotation.y += 0.0004;
+      points.rotation.x += 0.0002;
 
       targetX += (mouseX - targetX) * 0.05;
       targetY += (mouseY - targetY) * 0.05;
@@ -572,16 +575,17 @@
     function animate() {
       requestAnimationFrame(animate);
 
+      // All speeds reduced ~40-50% for a softer, meditative feel
       if (activeLotus && activeLotus.visible) {
-        activeLotus.rotation.y += 0.0035;
-        activeLotus.rotation.x = Math.sin(Date.now() * 0.0005) * 0.08;
+        activeLotus.rotation.y += 0.002;   // was 0.0035
+        activeLotus.rotation.x = Math.sin(Date.now() * 0.0003) * 0.05;
       }
       if (activeBrain && activeBrain.visible) {
-        activeBrain.rotation.y += 0.0025;
-        activeBrain.rotation.x += 0.0008;
+        activeBrain.rotation.y += 0.0015;  // was 0.0025
+        activeBrain.rotation.x += 0.0004;  // was 0.0008
       }
       if (activeSanskrit && activeSanskrit.visible) {
-        activeSanskrit.rotation.y += 0.0008;
+        activeSanskrit.rotation.y += 0.0004; // was 0.0008
         const sprites = activeSanskrit.userData.sprites;
         sprites.forEach((sprite) => {
           sprite.position.x += sprite.userData.vx;
