@@ -127,52 +127,52 @@
     showCard(0);
     update3DVerticals(0);
 
-    ScrollTrigger.matchMedia({
-      // Desktop: pin section and scrub transitions
-      "(min-width: 769px)": function() {
-        ScrollTrigger.create({
-          trigger: '#services',
-          start: 'top top',
-          end: 'bottom bottom',
-          pin: '#video-pin',
-          pinSpacing: true, // Keep standard page flow
-          anticipatePin: 1,
-          scrub: 1.5,
-          onUpdate: (self) => {
-            const p = self.progress;
-            pfill.style.width = (p * 100) + '%';
-            showCard(Math.min(2, Math.floor(p * 3)));
-            update3DVerticals(p);
-          }
-        });
-      },
+    const mm = gsap.matchMedia();
 
-      // Mobile/Tablet: natural scroll stack with ScrollTriggers to switch active assets
-      "(max-width: 768px)": function() {
-        vcards.forEach((card, index) => {
-          ScrollTrigger.create({
-            trigger: card,
-            start: 'top 55%',
-            end: 'bottom 45%',
-            onToggle: (self) => {
-              if (self.isActive) {
-                showCard(index);
-                update3DVerticalsMobile(index);
-              }
-            }
-          });
-        });
+    // Desktop: pin section and scrub transitions
+    mm.add("(min-width: 769px)", () => {
+      ScrollTrigger.create({
+        trigger: '#services',
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: '#video-pin',
+        pinSpacing: false, // Must be false because #services height (400vh) creates the scroll distance
+        anticipatePin: 1,
+        scrub: 1.5,
+        onUpdate: (self) => {
+          const p = self.progress;
+          pfill.style.width = (p * 100) + '%';
+          showCard(Math.min(2, Math.floor(p * 3)));
+          update3DVerticals(p);
+        }
+      });
+    });
 
-        // Add class to body to manage fixed bg and canvas visibility when services section is active
+    // Mobile/Tablet: natural scroll stack with ScrollTriggers to switch active assets
+    mm.add("(max-width: 768px)", () => {
+      vcards.forEach((card, index) => {
         ScrollTrigger.create({
-          trigger: '#services',
-          start: 'top bottom',
-          end: 'bottom top',
+          trigger: card,
+          start: 'top 55%',
+          end: 'bottom 45%',
           onToggle: (self) => {
-            document.body.classList.toggle('services-active', self.isActive);
+            if (self.isActive) {
+              showCard(index);
+              update3DVerticalsMobile(index);
+            }
           }
         });
-      }
+      });
+
+      // Add class to body to manage fixed bg and canvas visibility when services section is active
+      ScrollTrigger.create({
+        trigger: '#services',
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: (self) => {
+          document.body.classList.toggle('services-active', self.isActive);
+        }
+      });
     });
   }
 
