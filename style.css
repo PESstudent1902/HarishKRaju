@@ -303,7 +303,8 @@ a { text-decoration: none; color: inherit; }
 .vcard {
   position: absolute;
   left: 0; top: 0; bottom: 0;
-  width: 100%; padding: 0 0 0 52px;
+  width: 100%;
+  padding: 80px 0 40px 52px; /* Top padding to prevent cards from going under navbar */
   z-index: 5;
   display: flex; align-items: center;
   opacity: 0;
@@ -320,12 +321,12 @@ a { text-decoration: none; color: inherit; }
 .vcard-inner {
   max-width: 500px;
   width: 100%;
-  max-height: 92vh;
+  max-height: calc(100vh - 160px); /* Strictly fits inside viewport below navbar */
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--glass-b) transparent;
   padding: 36px 40px;
-  background: rgba(8,9,14,.88);
+  background: rgba(8,9,14,.92); /* Slightly darker for optimal readability */
   border: 1px solid var(--glass-b);
   border-radius: var(--r-lg);
   backdrop-filter: blur(28px);
@@ -713,6 +714,7 @@ a { text-decoration: none; color: inherit; }
 
   #hero { padding: 0 22px; }
   .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns a { width: 100%; max-width: 280px; text-align: center; }
 
   /* About — stack vertically */
   #about { padding: 90px 22px 70px; }
@@ -722,11 +724,60 @@ a { text-decoration: none; color: inherit; }
   }
   .about-photo-col { position: static; max-width: 300px; margin: 0 auto; }
 
-  /* Services section */
-  .vcard { padding: 0 18px 0 18px; }
-  .vcard-inner { padding: 22px 20px; max-width: 100%; }
+  /* Services section — natural vertical stack layout */
+  #services {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  #video-pin {
+    position: static;
+    height: auto;
+    width: auto;
+    overflow: visible;
+  }
+  .vbg, #three-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  /* Active states toggled via body class when #services is in viewport */
+  body.services-active .vbg.show {
+    visibility: visible;
+    opacity: 0.35;
+  }
+  body.services-active #three-canvas {
+    visibility: visible;
+    opacity: 1;
+  }
+  .vcard {
+    position: relative;
+    left: auto; top: auto; bottom: auto;
+    width: 100%;
+    padding: 0 20px 48px 20px;
+    opacity: 1 !important;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    pointer-events: auto;
+  }
+  .vcard-inner {
+    max-height: none;
+    overflow-y: visible;
+    margin-top: 42vh; /* Push card down to leave top 42% of screen clear for 3D model */
+    background: rgba(8,9,14,.93);
+    border: 1px solid var(--glass-b);
+    box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  }
   .vtop-label { display: none; }
-  #vdots { right: 10px; }
+  #vprogress { display: none; }
+  #vdots { display: none; }
   .vbenefits { padding: 14px; }
   .vgallery { grid-template-columns: 1fr; }
 
@@ -748,17 +799,15 @@ a { text-decoration: none; color: inherit; }
   .midna-logo { max-height: 48px; }
 }
 
-/* ─── Landscape mobile — keep 3D visible ─────────────────── */
+/* ─── Landscape mobile — adjust margins for scrolling layout ─── */
 @media (max-width: 768px) and (orientation: landscape) {
   .vcard {
-    bottom: auto; top: 0;
-    align-items: flex-start;
-    padding-top: 56px;
+    padding: 0 20px 32px 20px;
   }
   .vcard-inner {
-    max-height: 85vh;
-    padding: 18px 22px;
+    margin-top: 30vh;
+    padding: 24px 22px;
   }
-  .vbenefits { display: none; }  /* hide benefits in landscape for space */
-  .vgallery  { display: none; }  /* hide gallery in landscape for space */
+  .vbenefits { display: none; }
+  .vgallery  { display: none; }
 }

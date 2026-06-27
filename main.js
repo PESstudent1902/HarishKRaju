@@ -127,19 +127,51 @@
     showCard(0);
     update3DVerticals(0);
 
-    ScrollTrigger.create({
-      trigger: '#services',
-      start: 'top top',
-      end: 'bottom bottom',
-      pin: '#video-pin',
-      pinSpacing: false,
-      anticipatePin: 1,     // reduces pinning transition lag on mobile
-      scrub: 1.5,           // smoothing factor (seconds)
-      onUpdate: (self) => {
-        const p = self.progress;                          // 0 → 1
-        pfill.style.width = (p * 100) + '%';             // progress bar
-        showCard(Math.min(2, Math.floor(p * 3)));         // which card
-        update3DVerticals(p);
+    ScrollTrigger.matchMedia({
+      // Desktop: pin section and scrub transitions
+      "(min-width: 769px)": function() {
+        ScrollTrigger.create({
+          trigger: '#services',
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: '#video-pin',
+          pinSpacing: true, // Keep standard page flow
+          anticipatePin: 1,
+          scrub: 1.5,
+          onUpdate: (self) => {
+            const p = self.progress;
+            pfill.style.width = (p * 100) + '%';
+            showCard(Math.min(2, Math.floor(p * 3)));
+            update3DVerticals(p);
+          }
+        });
+      },
+
+      // Mobile/Tablet: natural scroll stack with ScrollTriggers to switch active assets
+      "(max-width: 768px)": function() {
+        vcards.forEach((card, index) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: 'top 55%',
+            end: 'bottom 45%',
+            onToggle: (self) => {
+              if (self.isActive) {
+                showCard(index);
+                update3DVerticalsMobile(index);
+              }
+            }
+          });
+        });
+
+        // Add class to body to manage fixed bg and canvas visibility when services section is active
+        ScrollTrigger.create({
+          trigger: '#services',
+          start: 'top bottom',
+          end: 'bottom top',
+          onToggle: (self) => {
+            document.body.classList.toggle('services-active', self.isActive);
+          }
+        });
       }
     });
   }
@@ -541,8 +573,10 @@
 
     const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
     const shiftX = isMobile ? 0 : 2.2;
+    const shiftY = isMobile ? 1.8 : 0; // Shift up on mobile to float model above cards in top 40% of viewport
     const shiftGroup = new THREE.Group();
     shiftGroup.position.x = shiftX;
+    shiftGroup.position.y = shiftY;
     verticalsScene.add(shiftGroup);
 
     verticalsRenderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha: true, antialias: true });
@@ -620,6 +654,7 @@
       
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
       shiftGroup.position.x = isMobile ? 0 : 2.2;
+      shiftGroup.position.y = isMobile ? 1.8 : 0; // Shift up on resize if mobile
 
       // Update scales on resize
       if (activeLotus && activeLotus.visible) activeLotus.scale.setScalar(isMobile ? 0.75 : 1.2);
@@ -684,6 +719,45 @@
     } else {
       activeSanskrit.visible = false;
     }
+  }
+
+  // Mobile transitions: Animate scale dynamically with GSAP to avoid jumps
+  function update3DVerticalsMobile(index) {
+    if (!activeLotus || !activeBrain || !activeSanskrit) return;
+
+    const lotusMax = 0.75;
+    const brainMax = 0.65;
+    const sanskritMax = 0.65;
+
+    gsap.to(activeLotus.scale, {
+      x: index === 0 ? lotusMax : 0,
+      y: index === 0 ? lotusMax : 0,
+      z: index === 0 ? lotusMax : 0,
+      duration: 0.5,
+      overwrite: 'auto',
+      onStart: () => { if (index === 0) activeLotus.visible = true; },
+      onComplete: () => { if (index !== 0) activeLotus.visible = false; }
+    });
+
+    gsap.to(activeBrain.scale, {
+      x: index === 1 ? brainMax : 0,
+      y: index === 1 ? brainMax : 0,
+      z: index === 1 ? brainMax : 0,
+      duration: 0.5,
+      overwrite: 'auto',
+      onStart: () => { if (index === 1) activeBrain.visible = true; },
+      onComplete: () => { if (index !== 1) activeBrain.visible = false; }
+    });
+
+    gsap.to(activeSanskrit.scale, {
+      x: index === 2 ? sanskritMax : 0,
+      y: index === 2 ? sanskritMax : 0,
+      z: index === 2 ? sanskritMax : 0,
+      duration: 0.5,
+      overwrite: 'auto',
+      onStart: () => { if (index === 2) activeSanskrit.visible = true; },
+      onComplete: () => { if (index !== 2) activeSanskrit.visible = false; }
+    });
   }
 
   /* ── Mobile menu toggle ───────────────────────────────── */
