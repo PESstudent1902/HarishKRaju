@@ -807,4 +807,51 @@
   }
   initQRCodes();
 
+  /* ── Lightbox Overlay Feature ───────────────────────────── */
+  function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    if (!lightbox || !lightboxImg) return;
+
+    // Target both gallery images and the main profile image
+    document.querySelectorAll('.vgallery-img, .profile-img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.alt || '';
+        lightbox.style.display = 'flex';
+        // Force a reflow for transition
+        lightbox.offsetHeight; 
+        lightbox.classList.add('show');
+      });
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('show');
+      setTimeout(() => {
+        lightbox.style.display = 'none';
+        lightboxImg.src = ''; // Clear source
+      }, 300);
+    };
+
+    // Close on click outside the image container
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg && e.target !== lightboxCaption) {
+        closeLightbox();
+      }
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Escape key support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+        closeLightbox();
+      }
+    });
+  }
+  initLightbox();
+
 })();
