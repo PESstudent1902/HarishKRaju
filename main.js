@@ -779,4 +779,32 @@
     });
   }
 
+  /* ── QR Code Generation ─────────────────────────────────── */
+  function initQRCodes() {
+    if (typeof QRCode === 'undefined') return;
+
+    const qrOptions = {
+      width: 120,
+      height: 120,
+      colorDark: '#c9a84c',
+      colorLight: '#0d1117',
+      correctLevel: QRCode.CorrectLevel.M
+    };
+
+    const qrSoundEl = document.getElementById('qr-sound-healing');
+    if (qrSoundEl) {
+      new QRCode(qrSoundEl, Object.assign({}, qrOptions, {
+        text: 'https://photos.app.goo.gl/CCCtXs22mWpUTJJh6'
+      }));
+    }
+
+    const qrMidnaEl = document.getElementById('qr-midna-gbp');
+    if (qrMidnaEl) {
+      new QRCode(qrMidnaEl, Object.assign({}, qrOptions, {
+        text: 'https://photos.app.goo.gl/Uh9x4esgtTVh8sh37'
+      }));
+    }
+  }
+  initQRCodes();
+
 })();

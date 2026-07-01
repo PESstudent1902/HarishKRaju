@@ -18,6 +18,9 @@
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+  <!-- QR Code Generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -55,11 +58,11 @@
     </div>
 
     <div class="hero-content" id="hero-content">
-      <div class="hero-eyebrow" id="hero-eyebrow">Sri Harish K Raju</div>
+      <div class="hero-eyebrow" id="hero-eyebrow">Harmony. Clarity. Purpose.</div>
       <h1 class="hero-title">
-        <span class="hl" id="hl1">Harmony.</span>
-        <span class="hl" id="hl2">Clarity.</span>
-        <span class="hl" id="hl3">Purpose.</span>
+        <span class="hl" id="hl1">Harish</span>
+        <span class="hl" id="hl2">K</span>
+        <span class="hl" id="hl3">Raju</span>
       </h1>
       <p class="hero-sub" id="hero-sub">Sound Healing &middot; Career Counselling &middot; Balavihar Education</p>
       <p class="hero-loc" id="hero-loc">
@@ -173,9 +176,17 @@
           </div>
 
           <!-- Session photos -->
-          <div class="vgallery">
-            <img src="sound_session.png"  alt="Sound healing group session" class="vgallery-img" />
-            <img src="singing_bowls.png"  alt="Tibetan singing bowls arrangement" class="vgallery-img" />
+          <div class="vgallery vgallery-4">
+            <img src="harish_outdoor.jpg"  alt="Outdoor sound healing session" class="vgallery-img" />
+            <img src="healing_session_1.png"  alt="Sound healing with singing bowls" class="vgallery-img" />
+            <img src="healing_session_2.png"  alt="Sound healing group meditation" class="vgallery-img" />
+            <img src="healing_session_3.jpg"  alt="Sound healing participants" class="vgallery-img" />
+          </div>
+
+          <!-- QR Code: Sound Healing Gallery -->
+          <div class="qr-wrap">
+            <div id="qr-sound-healing"></div>
+            <span class="qr-label">Scan for more photos</span>
           </div>
 
           <ul class="vpills">
@@ -184,6 +195,10 @@
             <li>Past Life Regression</li>
             <li>Advanced Meditation</li>
           </ul>
+          <a href="https://wa.me/919845885305" class="vcard-wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Book a Session
+          </a>
         </div>
       </div>
 
@@ -199,6 +214,17 @@
           <div class="midna-logo-wrap">
             <img src="midna_logo.png" alt="MIDNA Global — Transforming Lives" class="midna-logo" />
           </div>
+          <!-- Placeholder: MIDNA gallery photos -->
+          <div class="vgallery">
+            <div class="vgallery-placeholder">MIDNA session photos coming soon</div>
+          </div>
+
+          <!-- QR Code: MIDNA GBP Gallery -->
+          <div class="qr-wrap">
+            <div id="qr-midna-gbp"></div>
+            <span class="qr-label">Scan for more photos</span>
+          </div>
+
           <ul class="vpills">
             <li>Genetic Brain Profiling (GBP)</li>
             <li>Dermatoglyphics Analysis</li>
@@ -206,6 +232,10 @@
             <li>Career &amp; Life Mentoring</li>
             <li>Public Speaking Coach</li>
           </ul>
+          <a href="https://wa.me/919845885305" class="vcard-wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Get GBP Consultation
+          </a>
         </div>
       </div>
 
@@ -218,6 +248,11 @@
           <p class="vdesc">
             Since 2001, Harish has nurtured children aged 5&ndash;16 in the living traditions of India &mdash; chanting the Bhagavad Gita, Vishnu Sahasranama, Hanuman Chalisa, and Shlokas alongside value-based lessons drawn from sacred scriptures. Classes are available online and offline, rooted in over two decades of devoted Seva with the Chinmaya Mission.
           </p>
+          <!-- Placeholder: Balavihar gallery photos -->
+          <div class="vgallery">
+            <div class="vgallery-placeholder">Balavihar session photos coming soon</div>
+          </div>
+
           <ul class="vpills">
             <li>Chinmaya Mission Sevak</li>
             <li>Sanskrit Teaching</li>
@@ -225,6 +260,10 @@
             <li>Online &amp; Offline Classes</li>
             <li>Bhagavad Gita Chanting</li>
           </ul>
+          <a href="https://wa.me/919845885305" class="vcard-wa" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Enrol for Classes
+          </a>
         </div>
       </div>
 
@@ -255,7 +294,7 @@
           <div class="photo-frame anim-photo">
             <div class="photo-glow-back"></div>
             <div class="photo-inner">
-              <img src="harish_profile.png" alt="Sri Harish K Raju" class="profile-img" />
+              <img src="harish_outdoor.jpg" alt="Sri Harish K Raju" class="profile-img" />
             </div>
             <div class="photo-badge">
               <span class="badge-title">Sri Harish K Raju</span>
@@ -345,6 +384,29 @@
             <iframe src="https://www.youtube.com/embed/dd007_0AQDU" title="GBP Testimonial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <span class="vvideo-label">Mentoring Testimonial</span>
+        </div>
+      </div>
+
+      <!-- Written Reviews -->
+      <h3 class="reviews-heading">What Clients Say</h3>
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-stars"><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <p class="review-text">The sound healing session was a deeply transformative experience. Harish creates such a calming atmosphere and the vibrations of the singing bowls really helped release tension I had been carrying for months.</p>
+          <span class="review-author">-- Sound Healing Client</span>
+          <span class="review-tag">Sound Healing</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <p class="review-text">The GBP analysis gave our family real clarity on our child's strengths and learning style. Harish explained everything with patience and genuine care. Highly recommended for any parent.</p>
+          <span class="review-author">-- GBP Consultation Client</span>
+          <span class="review-tag">Career Counselling</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars"><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="var(--gold)" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <p class="review-text">My children have been attending Balavihar classes with Harish sir for over two years now. The way he teaches values through stories and chanting is something truly special and rare to find.</p>
+          <span class="review-author">-- Balavihar Parent</span>
+          <span class="review-tag">Balavihar</span>
         </div>
       </div>
     </div>
