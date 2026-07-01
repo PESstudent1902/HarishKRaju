@@ -828,6 +828,7 @@
     document.querySelectorAll('.vgallery-img, .profile-img').forEach(img => {
       img.addEventListener('click', () => {
         lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Extended gallery view';
         lightboxCaption.textContent = img.alt || '';
         lightbox.style.display = 'flex';
         // Force a reflow for transition
@@ -841,6 +842,7 @@
       setTimeout(() => {
         lightbox.style.display = 'none';
         lightboxImg.src = ''; // Clear source
+        lightboxImg.alt = 'Extended view of gallery photo';
       }, 300);
     };
 
@@ -861,5 +863,30 @@
     });
   }
   initLightbox();
+
+  /* ── YouTube Video Facade/Lazy Loading ─────────────────── */
+  function initVideoFacades() {
+    document.querySelectorAll('.video-facade').forEach(facade => {
+      facade.addEventListener('click', () => {
+        const videoId = facade.getAttribute('data-video-id');
+        const videoTitle = facade.getAttribute('data-video-title');
+        if (!videoId) return;
+
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+        iframe.setAttribute('title', videoTitle || 'YouTube Video');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', 'true');
+
+        // Clear contents (poster and button) and mount iframe
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+        // Remove class to disable hover scale zoom
+        facade.classList.remove('video-facade');
+      });
+    });
+  }
+  initVideoFacades();
 
 })();

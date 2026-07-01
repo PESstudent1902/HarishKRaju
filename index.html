@@ -73,15 +73,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <!-- QR Code Generator -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <!-- Custom Gold Branded Favicon (SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%230d1117'/><text y='65' x='50' font-family='Cinzel, serif' font-size='42' font-weight='bold' fill='%23c9a84c' text-anchor='middle'>HKR</text></svg>">
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -149,10 +142,9 @@
   <section id="services">
     <div id="video-pin">
 
-      <!-- Background images for smooth crossfade -->
-      <div class="vbg" id="vbg-0" style="background-image: url('sound_healing_bg.png');"></div>
-      <div class="vbg" id="vbg-1" style="background-image: url('midna_counselling_bg.png');"></div>
-      <div class="vbg" id="vbg-2" style="background-image: url('sanskrit_balavihar_bg.png');"></div>
+      <div class="vbg" id="vbg-0" style="background-image: url('sound_healing_bg.jpg');"></div>
+      <div class="vbg" id="vbg-1" style="background-image: url('midna_counselling_bg.jpg');"></div>
+      <div class="vbg" id="vbg-2" style="background-image: url('sanskrit_balavihar_bg.jpg');"></div>
 
       <!-- Interactive 3D WebGL Canvas -->
       <canvas id="three-canvas"></canvas>
@@ -237,11 +229,10 @@
             </div>
           </div>
 
-          <!-- Session photos -->
           <div class="vgallery vgallery-4">
             <img src="harish_outdoor.jpg"  alt="Outdoor sound healing session" class="vgallery-img" />
-            <img src="healing_session_1.png"  alt="Sound healing with singing bowls" class="vgallery-img" />
-            <img src="healing_session_2.png"  alt="Sound healing group meditation" class="vgallery-img" />
+            <img src="healing_session_1.jpg"  alt="Sound healing with singing bowls" class="vgallery-img" />
+            <img src="healing_session_2.jpg"  alt="Sound healing group meditation" class="vgallery-img" />
             <img src="healing_session_3.jpg"  alt="Sound healing participants" class="vgallery-img" />
           </div>
 
@@ -427,26 +418,38 @@
 
       <div class="vvideo-grid">
         <div class="vvideo-card">
-          <div class="vvideo-wrapper">
-            <iframe src="https://www.youtube.com/embed/R7BD6hRYt0Y" title="GBP Testimonial for Harish K Raju" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vvideo-wrapper video-facade" data-video-id="R7BD6hRYt0Y" data-video-title="GBP Testimonial for Harish K Raju">
+            <img src="https://img.youtube.com/vi/R7BD6hRYt0Y/hqdefault.jpg" alt="GBP Testimonial for Harish K Raju Video Poster" class="video-poster" />
+            <button class="video-play-btn" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </button>
           </div>
           <span class="vvideo-label">GBP Success Story</span>
         </div>
         <div class="vvideo-card">
-          <div class="vvideo-wrapper">
-            <iframe src="https://www.youtube.com/embed/feOIoMOtPs4" title="GBP Testimonial for Harish K Raju" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vvideo-wrapper video-facade" data-video-id="feOIoMOtPs4" data-video-title="GBP Testimonial for Harish K Raju">
+            <img src="https://img.youtube.com/vi/feOIoMOtPs4/hqdefault.jpg" alt="GBP Testimonial for Harish K Raju Video Poster" class="video-poster" />
+            <button class="video-play-btn" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </button>
           </div>
           <span class="vvideo-label">Counselling Review</span>
         </div>
         <div class="vvideo-card">
-          <div class="vvideo-wrapper">
-            <iframe src="https://www.youtube.com/embed/CFeAArfHfm0" title="MIDNA Testimonial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vvideo-wrapper video-facade" data-video-id="CFeAArfHfm0" data-video-title="MIDNA Testimonial">
+            <img src="https://img.youtube.com/vi/CFeAArfHfm0/hqdefault.jpg" alt="MIDNA Testimonial Video Poster" class="video-poster" />
+            <button class="video-play-btn" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </button>
           </div>
           <span class="vvideo-label">MIDNA Global Story</span>
         </div>
         <div class="vvideo-card">
-          <div class="vvideo-wrapper">
-            <iframe src="https://www.youtube.com/embed/dd007_0AQDU" title="GBP Testimonial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vvideo-wrapper video-facade" data-video-id="dd007_0AQDU" data-video-title="GBP Testimonial">
+            <img src="https://img.youtube.com/vi/dd007_0AQDU/hqdefault.jpg" alt="GBP Testimonial Video Poster" class="video-poster" />
+            <button class="video-play-btn" aria-label="Play video">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M8 5v14l11-7z"/></svg>
+            </button>
           </div>
           <span class="vvideo-label">Mentoring Testimonial</span>
         </div>
@@ -497,11 +500,11 @@
       </div>
 
       <div class="contact-cards">
-        <a href="mailto:harish19762707@gmail.com" class="ccard anim-ccard" id="ccard-email">
+        <a href="mailto:harish19762707&#64;gmail&#46;com" class="ccard anim-ccard" id="ccard-email">
           <svg class="ccard-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           <div>
             <div class="ccard-label">Email</div>
-            <div class="ccard-val">harish19762707@gmail.com</div>
+            <div class="ccard-val">harish19762707&#64;gmail&#46;com</div>
           </div>
         </a>
         <a href="tel:+919845885305" class="ccard anim-ccard" id="ccard-phone">
@@ -533,9 +536,15 @@
   <!-- Lightbox Modal for Extending Images -->
   <div id="lightbox" class="lightbox">
     <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img" src="" alt="" />
+    <img class="lightbox-content" id="lightbox-img" src="" alt="Extended view of gallery photo" />
     <div id="lightbox-caption" class="lightbox-caption"></div>
   </div>
+
+  <!-- Third-party scripts (GSAP, ScrollTrigger, Three.js, QR Creator) deferred to body end to prevent render-blocking -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <script src="main.js"></script>
 </body>
