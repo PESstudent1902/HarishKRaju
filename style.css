@@ -86,13 +86,13 @@ a { text-decoration: none; color: inherit; }
   padding: 14px 60px;
 }
 .nav-logo {
-  font-family: var(--ff-head); font-size: 1.6rem; font-weight: 700;
+  font-family: var(--ff-head); font-size: 1.85rem; font-weight: 700;
   color: var(--gold); letter-spacing: .14em;
   text-shadow: 0 0 18px var(--gold-glow);
 }
 .nav-links { list-style: none; display: flex; gap: 38px; }
 .nav-link {
-  font-size: .84rem; letter-spacing: .12em;
+  font-size: .96rem; letter-spacing: .12em;
   text-transform: uppercase; color: var(--muted);
   transition: color .3s;
   position: relative;
