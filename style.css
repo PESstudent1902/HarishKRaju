@@ -162,15 +162,18 @@ a { text-decoration: none; color: inherit; }
 
 .hero-title {
   font-family: var(--ff-head);
-  font-size: clamp(2.2rem, 8vw, 8rem);
-  font-weight: 700; line-height: 1.0; letter-spacing: .04em;
+  font-size: clamp(1.8rem, 5.2vw, 4.2rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: .04em;
   margin-bottom: 24px;
   white-space: nowrap;
+  text-align: center;
+  width: 100%;
 }
 .hl {
-  display: block;
+  display: inline-block;
   background: linear-gradient(135deg, var(--text) 0%, var(--gold-l) 55%, var(--gold) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  text-align: center;
 }
 
 .hero-sub {
