@@ -1076,3 +1076,84 @@ a { text-decoration: none; color: inherit; }
 .vgallery-img, .profile-img {
   cursor: pointer;
 }
+
+/* ─── Guru Section ────────────────────────────────────────── */
+#guru {
+  position: relative; z-index: 10;
+  padding: 100px 0;
+  background: var(--bg3);
+  overflow: hidden;
+  border-top: 1px solid var(--glass-b);
+}
+#guru .section-fade-top {
+  position: absolute; top: 0; left: 0; right: 0; height: 150px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--bg2), transparent);
+}
+.guru-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.guru-photo-col {
+  position: relative;
+}
+.guru-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+.guru-text {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.65;
+  opacity: 0.9;
+}
+.guru-signature-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+.guru-sig-img {
+  max-height: 80px;
+  width: auto;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.3));
+}
+.guru-sig-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: var(--ff-body);
+  letter-spacing: 0.05em;
+  border-left: 1px solid var(--glass-b);
+  padding-left: 14px;
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+  .guru-grid {
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  #guru { padding: 80px 22px 60px; }
+  .guru-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .guru-photo-col {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .guru-content-col {
+    text-align: center;
+  }
+  .guru-signature-wrap {
+    justify-content: center;
+  }
+}
+
