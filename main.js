@@ -293,9 +293,9 @@
       thickness: 1.2,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.9,
-      emissive: 0x4f128f,
-      emissiveIntensity: 0.25
+      opacity: 0.95,
+      emissive: 0xa78bfa,
+      emissiveIntensity: 0.85
     });
 
     const layers = [
@@ -322,7 +322,7 @@
     });
 
     const centerGeo = new THREE.SphereGeometry(0.35, 16, 16);
-    const centerMat = new THREE.MeshBasicMaterial({ color: 0xc9a84c });
+    const centerMat = new THREE.MeshBasicMaterial({ color: 0xf5d075 });
     const center = new THREE.Mesh(centerGeo, centerMat);
     center.position.y = 0.15;
     lotusGroup.add(center);
@@ -551,14 +551,14 @@
 
     verticalsScene = new THREE.Scene();
     
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
     verticalsScene.add(ambientLight);
-
-    const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+ 
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.6);
     dirLight1.position.set(5, 10, 7);
     verticalsScene.add(dirLight1);
-
-    const dirLight2 = new THREE.DirectionalLight(0x7c3aed, 0.4);
+ 
+    const dirLight2 = new THREE.DirectionalLight(0x7c3aed, 1.2);
     dirLight2.position.set(-5, -5, 5);
     verticalsScene.add(dirLight2);
 

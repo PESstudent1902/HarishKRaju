@@ -86,9 +86,10 @@ a { text-decoration: none; color: inherit; }
   padding: 14px 60px;
 }
 .nav-logo {
-  font-family: var(--ff-head); font-size: 1.85rem; font-weight: 700;
-  color: var(--gold); letter-spacing: .14em;
+  font-family: var(--ff-head); font-size: 1.5rem; font-weight: 700;
+  color: var(--gold); letter-spacing: .08em;
   text-shadow: 0 0 18px var(--gold-glow);
+  white-space: nowrap;
 }
 .nav-links { list-style: none; display: flex; gap: 38px; }
 .nav-link {
@@ -161,9 +162,10 @@ a { text-decoration: none; color: inherit; }
 
 .hero-title {
   font-family: var(--ff-head);
-  font-size: clamp(3.4rem, 9.5vw, 8rem);
+  font-size: clamp(2.2rem, 8vw, 8rem);
   font-weight: 700; line-height: 1.0; letter-spacing: .04em;
   margin-bottom: 24px;
+  white-space: nowrap;
 }
 .hl {
   display: block;
@@ -866,8 +868,9 @@ a { text-decoration: none; color: inherit; }
 }
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .footer-logo {
-  font-family: var(--ff-head); font-size: 2rem; font-weight: 700;
-  color: var(--gold); letter-spacing: .18em; margin-bottom: 6px;
+  font-family: var(--ff-head); font-size: 1.6rem; font-weight: 700;
+  color: var(--gold); letter-spacing: .10em; margin-bottom: 6px;
+  white-space: nowrap;
 }
 .footer-tag { font-size: .88rem; color: var(--muted); letter-spacing: .08em; }
 .footer-copy { font-size: .76rem; color: rgba(139,149,168,.45); margin-top: 6px; }
@@ -888,6 +891,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 768px) {
   #navbar { padding: 16px 22px; }
   #navbar.scrolled { padding: 11px 22px; }
+  .nav-logo { font-size: 1.2rem; }
 
   .nav-links {
     display: flex; flex-direction: column;
@@ -996,7 +1000,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 2.9rem; }
+  .hero-title { font-size: 1.95rem; }
   .vtitle { font-size: 1.1rem; }
   .vnum { font-size: 2.2rem; }
   .sec-title { font-size: 1.9rem; }
