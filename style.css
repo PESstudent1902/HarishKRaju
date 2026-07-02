@@ -358,7 +358,7 @@ a { text-decoration: none; color: inherit; }
 }
 .vdesc {
   font-size: .87rem; color: var(--muted); line-height: 1.78;
-  margin-bottom: 20px;
+  margin-bottom: 20px; text-align: left;
 }
 .vpills {
   list-style: none; display: flex; flex-wrap: wrap; gap: 8px;
@@ -408,7 +408,7 @@ a { text-decoration: none; color: inherit; }
   letter-spacing: .03em; margin-bottom: 2px;
 }
 .vbenefit-item p {
-  font-size: .77rem; color: var(--muted); line-height: 1.6;
+  font-size: .77rem; color: var(--muted); line-height: 1.6; text-align: left;
 }
 
 /* ─── Service Card Gallery ───────────────────────────────── */
