@@ -604,6 +604,21 @@
     <div id="lightbox-caption" class="lightbox-caption"></div>
   </div>
 
+  <!-- Background Music Player and Widget -->
+  <div id="bg-audio-control" class="audio-control-widget">
+    <button id="audio-toggle-btn" class="audio-btn" aria-label="Toggle Background Music">
+      <div class="audio-waves" id="audio-waves-container">
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+        <span class="stroke"></span>
+      </div>
+      <span id="audio-status-text">Play Healing Sounds</span>
+    </button>
+  </div>
+  <div id="youtube-audio-player" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
+
   <!-- Third-party scripts (GSAP, ScrollTrigger, Three.js) deferred to body end to prevent render-blocking -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

@@ -854,4 +854,124 @@
   }
   initVideoFacades();
 
+  /* ── Background Music / Sound Therapy Player ─────────────── */
+  function initBackgroundAudio() {
+    // Load the YouTube Iframe Player API asynchronously
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    let ytPlayer;
+    let isAudioPlaying = false;
+    let audioAPIReady = false;
+
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player('youtube-audio-player', {
+        height: '1',
+        width: '1',
+        videoId: '6Kj-ye-aYBA',
+        playerVars: {
+          autoplay: 0,
+          loop: 1,
+          playlist: '6Kj-ye-aYBA', // required for loop to work with YT API
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          modestbranding: 1,
+          rel: 0,
+          showinfo: 0,
+          iv_load_policy: 3
+        },
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError
+        }
+      });
+    };
+
+    function onPlayerReady(event) {
+      audioAPIReady = true;
+      event.target.setVolume(50); // Set moderate volume for ambient background sound
+
+      // Set up click/scroll/touch listener for autostart since browser policies block autoplay without user interaction
+      const startAudioOnInteraction = () => {
+        if (!isAudioPlaying && audioAPIReady) {
+          playAudio();
+        }
+        document.removeEventListener('click', startAudioOnInteraction);
+        document.removeEventListener('scroll', startAudioOnInteraction);
+        document.removeEventListener('touchstart', startAudioOnInteraction);
+      };
+
+      document.addEventListener('click', startAudioOnInteraction);
+      document.addEventListener('scroll', startAudioOnInteraction);
+      document.addEventListener('touchstart', startAudioOnInteraction);
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        ytPlayer.playVideo();
+      }
+    }
+
+    function onPlayerError(event) {
+      console.warn("YouTube background player issue:", event.data);
+    }
+
+    function playAudio() {
+      if (!ytPlayer || !audioAPIReady) return;
+      try {
+        ytPlayer.playVideo();
+        isAudioPlaying = true;
+        updateAudioUI(true);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function pauseAudio() {
+      if (!ytPlayer || !audioAPIReady) return;
+      try {
+        ytPlayer.pauseVideo();
+        isAudioPlaying = false;
+        updateAudioUI(false);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function updateAudioUI(isPlaying) {
+      const waves = document.getElementById('audio-waves-container');
+      const text = document.getElementById('audio-status-text');
+      if (waves && text) {
+        if (isPlaying) {
+          waves.classList.add('playing');
+          text.textContent = 'Mute Sounds';
+        } else {
+          waves.classList.remove('playing');
+          text.textContent = 'Play Healing Sounds';
+        }
+      }
+    }
+
+    const toggleBtn = document.getElementById('audio-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isAudioPlaying) {
+          pauseAudio();
+        } else {
+          playAudio();
+        }
+      });
+    }
+  }
+
+  // Initialize once window loads
+  window.addEventListener('load', () => {
+    initBackgroundAudio();
+  });
+
 })();
