@@ -872,7 +872,7 @@
         width: '1',
         videoId: '6Kj-ye-aYBA',
         playerVars: {
-          autoplay: 0,
+          autoplay: 1,
           loop: 1,
           playlist: '6Kj-ye-aYBA', // required for loop to work with YT API
           controls: 0,
@@ -895,7 +895,10 @@
       audioAPIReady = true;
       event.target.setVolume(50); // Set moderate volume for ambient background sound
 
-      // Set up click/scroll/touch listener for autostart since browser policies block autoplay without user interaction
+      // 1. Try to play immediately (works if browser autoplay policy permits it, e.g. user has visited/interacted before)
+      playAudio();
+
+      // 2. Set up fallback interaction listeners to play as soon as the user interacts if browser blocked step 1
       const startAudioOnInteraction = () => {
         if (!isAudioPlaying && audioAPIReady) {
           playAudio();
@@ -911,7 +914,13 @@
     }
 
     function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.ENDED) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        isAudioPlaying = true;
+        updateAudioUI(true);
+      } else if (event.data === YT.PlayerState.PAUSED) {
+        isAudioPlaying = false;
+        updateAudioUI(false);
+      } else if (event.data === YT.PlayerState.ENDED) {
         ytPlayer.playVideo();
       }
     }
@@ -924,8 +933,6 @@
       if (!ytPlayer || !audioAPIReady) return;
       try {
         ytPlayer.playVideo();
-        isAudioPlaying = true;
-        updateAudioUI(true);
       } catch (err) {
         console.error(err);
       }
