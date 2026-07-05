@@ -65,6 +65,29 @@ a { text-decoration: none; color: inherit; }
   font-size: .8rem; letter-spacing: .22em;
   color: var(--muted); text-transform: uppercase;
 }
+.enter-btn {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--text);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+.enter-btn:hover {
+  background: var(--gold);
+  color: #0d1117;
+  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+  transform: translateY(-2px);
+}
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes pulseglow {
   0%,100% { opacity: .6; text-shadow: 0 0 8px var(--gold-glow); }
