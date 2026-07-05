@@ -38,11 +38,15 @@
   /* ── Loader ───────────────────────────────────────────── */
   // Show loader until page ready, then fade out and start animations
   let animsStarted = false;
-  let pageReady = false;
 
   function startPage() {
     if (animsStarted) return;
     animsStarted = true;
+
+    // Try playing the background audio immediately
+    if (typeof playAudio === 'function') {
+      playAudio();
+    }
 
     gsap.to(loader, {
       opacity: 0, duration: 0.7, ease: 'power2.inOut',
@@ -57,48 +61,12 @@
     });
   }
 
-  function onPageReady() {
-    if (pageReady) return;
-    pageReady = true;
-
-    const loaderRing = document.querySelector('.loader-ring');
-    const loaderStatus = document.getElementById('loader-status');
-    const enterBtn = document.getElementById('enter-btn');
-
-    if (loaderRing) {
-      loaderRing.style.borderTopColor = 'rgba(201, 168, 76, 0.2)';
-      loaderRing.style.borderRightColor = 'rgba(124, 58, 237, 0.2)';
-    }
-    if (loaderStatus) loaderStatus.textContent = 'Vibrations Tuned';
-
-    if (enterBtn) {
-      enterBtn.style.display = 'block';
-      gsap.to(enterBtn, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        delay: 0.1,
-        ease: 'power2.out'
-      });
-
-      enterBtn.addEventListener('click', () => {
-        // Try playing background audio directly in the click event context
-        if (typeof playAudio === 'function') {
-          playAudio();
-        }
-        startPage();
-      });
-    } else {
-      startPage();
-    }
-  }
-
   // Fire as soon as fonts + DOM are ready, don't wait for video
   if (document.readyState === 'complete') {
-    onPageReady();
+    startPage();
   } else {
-    window.addEventListener('DOMContentLoaded', onPageReady);
-    window.addEventListener('load', onPageReady);
+    window.addEventListener('DOMContentLoaded', startPage);
+    window.addEventListener('load', startPage);
   }
 
   /* ── Navbar ───────────────────────────────────────────── */
